@@ -15,11 +15,8 @@ import java.util.HashMap;
 public class CityController {
 
     @RequestMapping(value = "/viewcity", produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<?> getCities() throws Exception {
-        ArrayList<City> cities = RDSProcessor.getInstance().queryCity("select * from city");
-        HashMap<String, Object> hmap = new HashMap<>();
-        hmap.put("Cities", cities);
-        return new ResponseEntity<>(hmap, HttpStatus.OK);
+    public ArrayList<City> getCities() throws Exception {
+        return RDSProcessor.getInstance().queryCity("select * from city");
     }
 
     @RequestMapping(value = "/getCity", produces = MediaType.APPLICATION_XML_VALUE)
