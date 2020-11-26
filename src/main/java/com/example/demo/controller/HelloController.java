@@ -15,6 +15,11 @@ public class HelloController {
     AtomicInteger integer = new AtomicInteger(1);
     HashMap<String, Integer> hm = new HashMap<>();
 
+    @RequestMapping("/")
+    public String getHome() {
+        return "Hello Welcome to SpringBootAPI!";
+    }
+
     @RequestMapping("/rest")
     public String getHello() {
         return "Hello World!";
@@ -26,7 +31,7 @@ public class HelloController {
     }
 
     @RequestMapping(path = "/greeting", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Greeting getGreeting(@RequestParam(value = "name", defaultValue = "Panchod") String name) {
+    public Greeting getGreeting(@RequestParam(value = "name") String name) {
         return new Greeting(name, integer.incrementAndGet());
     }
 
